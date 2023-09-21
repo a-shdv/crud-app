@@ -1,11 +1,12 @@
- # db config
-spring.datasource.url=jdbc:postgresql://localhost:5432/crud_app
-spring.datasource.username=postgres
-spring.datasource.password=postgres
-
-# hibernate
-spring.jpa.hibernate.ddl-auto=create-drop
-
-# migrations
-spring.liquibase.enabled=false
-
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/crud_app
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  liquibase:
+    enabled: true

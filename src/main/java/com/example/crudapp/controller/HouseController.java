@@ -4,7 +4,7 @@ import com.example.crudapp.exception.HouseAlreadyExistsException;
 import com.example.crudapp.exception.HouseNotFoundException;
 import com.example.crudapp.exception.HousesListIsEmptyException;
 import com.example.crudapp.model.House;
-import com.example.crudapp.service.HouseService;
+import com.example.crudapp.service.impl.HouseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

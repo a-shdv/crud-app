@@ -6,10 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "houses")
-public class House {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class House extends BaseEntity {
 
     @Column
     private String address;
@@ -20,18 +17,9 @@ public class House {
     public House() {
     }
 
-    public House(Long id, String address, List<User> users) {
-        this.id = id;
+    public House(String address, List<User> users) {
         this.address = address;
         this.users = users;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAddress() {

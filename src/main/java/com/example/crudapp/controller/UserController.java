@@ -4,7 +4,7 @@ import com.example.crudapp.exception.UserAlreadyExistsException;
 import com.example.crudapp.exception.UserNotFoundException;
 import com.example.crudapp.exception.UsersListIsEmptyException;
 import com.example.crudapp.model.User;
-import com.example.crudapp.service.UserService;
+import com.example.crudapp.service.impl.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
