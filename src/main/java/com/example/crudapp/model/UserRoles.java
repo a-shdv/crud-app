@@ -4,10 +4,10 @@ import org.springframework.security.core.GrantedAuthority;
 
 public enum UserRoles implements GrantedAuthority {
     // Хозяин
-    ROLE_OWNER,
+    OWNER,
 
     // Жилец
-    ROLE_TENANT;
+    TENANT;
 
     @Override
     public String getAuthority() {

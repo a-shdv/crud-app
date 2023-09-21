@@ -6,6 +6,7 @@ import com.example.crudapp.exception.HouseNotFoundException;
 import com.example.crudapp.exception.HousesListIsEmptyException;
 import com.example.crudapp.model.House;
 import com.example.crudapp.repository.HouseRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class HouseService implements com.example.crudapp.service.HouseService {
     private final HouseRepo houseRepo;
 
+    @Autowired
     public HouseService(HouseRepo houseRepo) {
         this.houseRepo = houseRepo;
     }

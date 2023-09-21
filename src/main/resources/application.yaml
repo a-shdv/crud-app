@@ -1,3 +1,5 @@
+server:
+  port: 8081
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -10,3 +12,7 @@ spring:
     show-sql: false
   liquibase:
     enabled: true
+jwt:
+  token:
+    secret: jwtcrudapp
+    expired: 60000

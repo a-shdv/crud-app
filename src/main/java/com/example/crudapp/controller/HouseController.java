@@ -5,6 +5,7 @@ import com.example.crudapp.exception.HouseNotFoundException;
 import com.example.crudapp.exception.HousesListIsEmptyException;
 import com.example.crudapp.model.House;
 import com.example.crudapp.service.impl.HouseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class HouseController {
     private final HouseService houseService;
 
+    @Autowired
     public HouseController(HouseService houseService) {
         this.houseService = houseService;
     }
@@ -24,8 +26,6 @@ public class HouseController {
             return ResponseEntity.ok("Успех!");
         } catch (HouseAlreadyExistsException houseAlreadyExistsException) {
             return ResponseEntity.badRequest().body(houseAlreadyExistsException.toString());
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.toString());
         }
     }
 
@@ -35,8 +35,6 @@ public class HouseController {
             return ResponseEntity.ok(houseService.getHouses());
         } catch (HousesListIsEmptyException housesListIsEmptyException) {
             return ResponseEntity.badRequest().body(housesListIsEmptyException.toString());
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.toString());
         }
     }
 
@@ -46,8 +44,6 @@ public class HouseController {
             return ResponseEntity.ok(houseService.getHouseById(id));
         } catch (HouseNotFoundException houseNotFoundException) {
             return ResponseEntity.badRequest().body(houseNotFoundException.toString());
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.toString());
         }
     }
 
@@ -58,8 +54,6 @@ public class HouseController {
             return ResponseEntity.ok(houseService.updateHouseById(id, reqHouse));
         } catch (HouseNotFoundException houseNotFoundException) {
             return ResponseEntity.badRequest().body(houseNotFoundException.toString());
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.toString());
         }
     }
 
@@ -69,8 +63,6 @@ public class HouseController {
             return ResponseEntity.ok(houseService.deleteHouseById(id));
         } catch (HouseNotFoundException houseNotFoundException) {
             return ResponseEntity.badRequest().body(houseNotFoundException.toString());
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.toString());
         }
     }
 }
