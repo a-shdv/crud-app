@@ -12,6 +12,7 @@ public class House {
     @Column(nullable = false)
     private String address;
 
+    // TODO JSON IGNORE
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
