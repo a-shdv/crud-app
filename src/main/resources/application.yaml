@@ -1,0 +1,11 @@
+ # db config
+spring.datasource.url=jdbc:postgresql://localhost:5432/crud_app
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+
+# hibernate
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# migrations
+spring.liquibase.enabled=false
+
