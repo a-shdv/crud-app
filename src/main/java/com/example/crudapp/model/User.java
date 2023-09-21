@@ -9,23 +9,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String username;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, int age) {
+    public User(Long id, String username, String password, int age, House house) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.age = age;
+        this.house = house;
     }
 
     public Long getId() {

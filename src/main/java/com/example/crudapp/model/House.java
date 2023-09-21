@@ -2,6 +2,8 @@ package com.example.crudapp.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "houses")
 public class House {
@@ -9,21 +11,23 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String address;
 
-    // TODO JSON IGNORE
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "house")
+    private List<User> users;
 
     public House() {
     }
 
-    public House(Long id, String address, User user) {
+    public House(Long id, String address, List<User> users) {
         this.id = id;
         this.address = address;
-        this.user = user;
+        this.users = users;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
@@ -38,11 +42,11 @@ public class House {
         this.address = address;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
