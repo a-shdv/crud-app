@@ -19,8 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    private static final String OWNER_ENDPOINT = "/api/admin/**";
-    private static final String TENANT_ENDPOINT = "/api/users/**";
+    private static final String ADMIN_ENDPOINT = "/api/admin/**";
+
+    private static final String USER_ENDPOINT = "/api/users/**";
+
+    private static final String HOUSES_ENDPOINT = "/api/houses/**";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -41,8 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(TENANT_ENDPOINT).permitAll()
-                .antMatchers(OWNER_ENDPOINT).hasRole(UserRoles.OWNER.getAuthority())
+                .antMatchers(USER_ENDPOINT).permitAll()
+                .antMatchers(HOUSES_ENDPOINT).permitAll()
+                .antMatchers(ADMIN_ENDPOINT).hasRole(UserRoles.OWNER.getAuthority())
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

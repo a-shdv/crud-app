@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +56,6 @@ public class UserService implements com.example.crudapp.service.UserService {
             throw new UserNotFoundException("Пользователь с именем " + user.getUsername() + " не найден!");
         }
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), dto.getPassword()));
         String token = jwtTokenProvider.createToken(user.getUsername(), user.getUserRoles());
 
         response.put("username", user.getUsername());
@@ -65,11 +65,13 @@ public class UserService implements com.example.crudapp.service.UserService {
     }
 
     @Override
-    public List<UserDto> getUsers() throws UsersListIsEmptyException {
+    public List<UserDto> getUsers() throws UsersListIsEmptyException {;
         List<User> users = userRepo.findAll();
+
         if (users.isEmpty()) {
             throw new UsersListIsEmptyException("Список пользователей пуст!");
         }
+
         return UserDto.toUsersDto(users);
     }
 

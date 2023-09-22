@@ -47,6 +47,15 @@ public class HouseService implements com.example.crudapp.service.HouseService {
     }
 
     @Override
+    public House getHouseByAddress(String address) throws HouseNotFoundException {
+        House house = houseRepo.findHouseByAddress(address);
+        if (house.getId() == null) {
+            throw new HouseNotFoundException("Дом не найден!");
+        }
+        return house;
+    }
+
+    @Override
     public HouseDto updateHouseById(Long id, House reqHouse) throws HouseNotFoundException {
         House dbHouse = houseRepo.findById(id).get();
         if (dbHouse.getId() == null) {
@@ -66,4 +75,5 @@ public class HouseService implements com.example.crudapp.service.HouseService {
         houseRepo.deleteById(id);
         return id;
     }
+
 }

@@ -5,6 +5,7 @@ import com.example.crudapp.exception.HouseNotFoundException;
 import com.example.crudapp.exception.HousesListIsEmptyException;
 import com.example.crudapp.model.House;
 import com.example.crudapp.service.impl.HouseService;
+import com.example.crudapp.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/houses")
 public class HouseController {
     private final HouseService houseService;
+    private final UserService userService;
 
     @Autowired
-    public HouseController(HouseService houseService) {
+    public HouseController(HouseService houseService, UserService userService) {
         this.houseService = houseService;
+        this.userService = userService;
     }
 
     @PostMapping
     public ResponseEntity<?> createHouse(@RequestBody House house) {
         try {
+            house.setUser(userService.findUserByUsername("admin"));
             houseService.createHouse(house);
             return ResponseEntity.ok("Успех!");
         } catch (HouseAlreadyExistsException houseAlreadyExistsException) {

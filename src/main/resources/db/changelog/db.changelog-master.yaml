@@ -5,4 +5,15 @@ databaseChangeLog:
       file: db/changelog/changeset/01_create_users_table.sql
   - include:
       file: db/changelog/changeset/02_create_users_roles_table.sql
-
+  - include:
+      file: db/changelog/changeset/03_delete_columns_houses_table.sql
+  - include:
+      file: db/changelog/changeset/04_delete_columns_users_table.sql
+  - include:
+      file: db/changelog/changeset/05_drop_constraint_houses_table.sql
+  - include:
+      file: db/changelog/changeset/06_drop_constraint_users_table.sql
+  - include:
+      file: db/changelog/changeset/07_insert_users_table.sql
+  - include:
+      file: db/changelog/changeset/08_insert_houses_table.sql

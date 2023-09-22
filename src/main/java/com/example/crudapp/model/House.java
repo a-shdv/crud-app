@@ -13,9 +13,8 @@ public class House {
     @Column
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "house")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "house", fetch = FetchType.EAGER)
     private List<User> users;
-
 
     public House() {
     }
@@ -46,7 +45,7 @@ public class House {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.users.add(user);
     }
 }
