@@ -15,6 +15,8 @@ public interface HouseService {
 
     HouseDto getHouseById(Long id) throws HouseNotFoundException;
 
+    House getHouseByAddress(String address) throws HouseNotFoundException;
+
     HouseDto updateHouseById(Long id, House reqHouse) throws HouseNotFoundException;
 
     Long deleteHouseById(Long id) throws HouseNotFoundException;

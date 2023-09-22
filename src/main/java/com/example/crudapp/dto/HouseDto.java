@@ -9,6 +9,7 @@ public class HouseDto {
     private Long id;
     private String address;
 
+
     public HouseDto() {
     }
 

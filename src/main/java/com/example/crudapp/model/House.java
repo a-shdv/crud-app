@@ -1,25 +1,36 @@
 package com.example.crudapp.model;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "houses")
-public class House extends BaseEntity {
+public class House {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "house")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "house", fetch = FetchType.EAGER)
     private List<User> users;
 
     public House() {
     }
 
-    public House(String address, List<User> users) {
+    public House(Long id, String address, List<User> users) {
+        this.id = id;
         this.address = address;
         this.users = users;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAddress() {
@@ -34,7 +45,7 @@ public class House extends BaseEntity {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.users.add(user);
     }
 }
